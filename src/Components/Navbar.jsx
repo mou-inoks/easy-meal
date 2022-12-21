@@ -69,7 +69,7 @@ const DrawerAppBar = () => {
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (
-              <Button key={item} sx={{ color: '#fff', marginLeft: 3}}>
+              <Button key={item} sx={{ color: '#fff', marginLeft: 3, backgroundColor: '#2196F3'}}>
                 {item}
               </Button>
             ))}

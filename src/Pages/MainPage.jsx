@@ -1,12 +1,12 @@
 import React from 'react'
-import Navbar from '../Components/Navbar.jsx'
 import '../App.css'
-
+import Diet from '../Img/diet.svg'
 
 function MainPage() {
  return (
    <div className='MainPage'>
-     <Navbar/>
+    <h1>EasyMeal</h1>
+    <img className='imgAccueil' src={Diet} alt="co workers"/>
    </div>
  );
 }

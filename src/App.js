@@ -1,8 +1,11 @@
 import MainPage from './Pages/MainPage';
+import Navbar from './Components/Navbar'
 
-function App() {
-  return (
+const App = () => {
+  return (<>
+    <Navbar/>
     <MainPage/>
+  </>
   );
 }
 
