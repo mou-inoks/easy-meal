@@ -1,10 +1,9 @@
-import MainPage from './Pages/MainPage';
 import Navbar from './Components/Navbar'
+import MainPage from './Pages/MainPage';
 
 const App = () => {
   return (<>
     <Navbar/>
-    <MainPage/>
   </>
   );
 }
