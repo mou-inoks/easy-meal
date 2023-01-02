@@ -1,7 +1,7 @@
 import React from 'react'
 import '../App.css'
 import Grid from '@mui/material/Grid';
-import List from '../Components/List'
+import ListAliments from '../Components/ListAliments'
 import Typography from '@mui/material/Typography';
 
 
@@ -19,7 +19,7 @@ function MainPage() {
                 <Grid item xs={12}/>
                 
                 <Grid className='ListItem' item xs={10} >
-                    <List/>
+                    <ListAliments/>
                 </Grid>
             </Grid>
         </div>
