@@ -13,6 +13,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
 
 
 const drawerWidth = 240;
@@ -27,7 +28,7 @@ const DrawerAppBar = () => {
   };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', position: 'absolute' }}>
       <Typography variant="h6" sx={{ my: 2 }}>
         EasyMeal
       </Typography>
@@ -36,7 +37,7 @@ const DrawerAppBar = () => {
         {navItems.map((item) => (
           <ListItem key={item} disablePadding>
             <ListItemButton sx={{ textAlign: 'center' }}>
-              <ListItemText primary={item} />
+              <Link style={{ textDecoration: 'none', color: 'white' }} to={`/${item}`}>{item}</Link>
             </ListItemButton>
           </ListItem>
         ))}
@@ -50,7 +51,7 @@ const DrawerAppBar = () => {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar component="nav">
-        <Toolbar sx={{backgroundColor: '#191919'}}>
+        <Toolbar sx={{ backgroundColor: '#191919' }}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -69,8 +70,8 @@ const DrawerAppBar = () => {
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (
-              <Button key={item} sx={{ color: '#fff', marginLeft: 3, backgroundColor: '#2196F3'}}>
-                {item}
+              <Button key={item} sx={{ color: '#fff', marginLeft: 3, backgroundColor: '#2196F3' }}>
+                <Link style={{ textDecoration: 'none', color: 'white' }} to={`/${item}`}>{item}</Link>
               </Button>
             ))}
           </Box>

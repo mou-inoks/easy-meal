@@ -18,12 +18,11 @@ const columns: GridColDef[] = [
     width: 110,
     editable: true,
   },
- 
 ];
 
-const ListOfIngredients = () =>  {
+const ListOfIngredients = () => {
 
-const [aliments, setAliments] = useState([])
+  const [aliments, setAliments] = useState([])
 
   useEffect(() => {
     axios.get('https://localhost:7185/api/Aliments').then(res => {
@@ -32,11 +31,12 @@ const [aliments, setAliments] = useState([])
     }).catch(err => {
       console.log(err)
     })
-  })
+  }, [])
 
   return (
-    <Box sx={{ height: 400, width: '40%',alignSelf: 'center', position: 'relative', left: '40%', top: '50%' }}>
+    <Box sx={{ height: 400, width: '40%', alignSelf: 'center', position: 'relative', left: '40%', top: '50%' }}>
       <DataGrid
+        sx={{ height: '100%', width: '100%' }}
         rows={aliments}
         columns={columns}
         pageSize={5}
