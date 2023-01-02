@@ -15,7 +15,7 @@ const App = () => {
         <Grid item xs={12} />
         <Routes>
           <Route path='/' element={<MainPage/>}/>
-          <Route path='/Accueil' element={<MainPage/>}/>
+          <Route path='/Aliments' element={<MainPage/>}/>
           <Route path='/CreateAliment' element={<CreateAliment/>}/>
           <Route path='/Meals' element={<Meals/>}/>
         </Routes>
