@@ -18,26 +18,40 @@ const CreateAliment = () => {
 
  const [TypeId, setTypeId] = useState('')
 
+ const [nameError, setNameError] = useState(false)
+
+ const [TypeError, setTypeError] = useState(false)
+
+
  const onSubmit = async () => {
+  if (name == null || name == "" && TypeId == null || TypeId == "") {
+   setNameError(true)
+   setTypeError(true)
+  }
+  if (name == null || name == "")
+   return setNameError(true)
 
-  const data = { name: name, typeId: TypeId };
+  if (TypeId == null || TypeId == "")
+   return setTypeError(true);
+  else {
+   const data = { name: name, typeId: TypeId };
 
-  fetch('https://localhost:7185/api/Aliments', {
-  method: 'POST', // or 'PUT'
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(data),
-})
-  .then((response) => response.json())
-  .then((data) => {
-    console.log('Success:', data);
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-  });
-
- } 
+   fetch('https://localhost:7185/api/Aliments', {
+    method: 'POST', // or 'PUT'
+    headers: {
+     'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+   })
+    .then((response) => response.json())
+    .then((data) => {
+     console.log('Success:', data);
+    })
+    .catch((error) => {
+     console.error('Error:', error);
+    });
+  }
+ }
 
 
  return (
@@ -59,7 +73,7 @@ const CreateAliment = () => {
        name='Nom'
        sx={{ position: 'absolute', left: '43%', top: '20%' }}
        required
-       error={false}
+       error={nameError}
        id="outlined-required"
        label="Nom"
       />
@@ -83,7 +97,7 @@ const CreateAliment = () => {
        required
        id="outlined-required"
        label="Type"
-       error={false}
+       error={TypeError}
       />
      </div>
     </Box>
