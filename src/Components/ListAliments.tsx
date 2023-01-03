@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const columns: GridColDef[] = [
-  { field: 'id', headerName: 'Id', width: 90 },
   {
     field: 'name',
     headerName: 'Aliments',

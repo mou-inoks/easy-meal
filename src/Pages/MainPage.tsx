@@ -23,7 +23,7 @@ function MainPage() {
                     <ListAliments />
                 </Grid>
                 <Grid item xs={12}>
-                    <Button sx={{ top: '12rem', left: '62%' }} variant="contained"><Link style={{ textDecoration: 'none', color: 'white' }} to={'/CreateMeals'}>Add</Link></Button>
+                    <Button sx={{ top: '12rem', left: '62%' }} variant="contained"><Link style={{ textDecoration: 'none', color: 'white' }} to={'/CreateAliment'}>Add</Link></Button>
                 </Grid>
             </Grid>
         </div>
