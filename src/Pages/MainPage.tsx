@@ -3,8 +3,6 @@ import '../App.css'
 import Grid from '@mui/material/Grid';
 import ListAliments from '../Components/ListAliments'
 import Typography from '@mui/material/Typography';
-import { Button } from '@mui/material';
-import { Link } from 'react-router-dom';
 
 
 function MainPage() {

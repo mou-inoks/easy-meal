@@ -6,6 +6,7 @@ import axios from 'axios';
 import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 
+
 const columns: GridColDef[] = [
   {
     field: 'name',
@@ -23,8 +24,13 @@ const columns: GridColDef[] = [
 
 const ListOfIngredients = () => {
 
+  const [aliments, setAliments] = useState([])
 
-  const GetData = () => {
+  const [isDisabled, setDisabled] = useState(true)
+
+  const [arrData, setArrData] = useState<number[]>([])
+
+  const FetchGetAlimentsList = () => {
     axios.get('https://localhost:7185/api/Aliments').then(res => {
       console.log(res)
       setAliments(res.data)
@@ -33,14 +39,16 @@ const ListOfIngredients = () => {
     })
   }
 
-  const [aliments, setAliments] = useState([])
-
-  const [isDisabled, setDisabled] = useState(true)
-
-  const [arrData, setArrData] = useState<number[]>([])
-
+  const FetchDeleteAliment = (id: number) => {
+    fetch('https://localhost:7185/api/Aliments/' + id, {
+      method: 'DELETE'
+    }).then(r => {
+      FetchGetAlimentsList()
+    })
+  }
+  
   useEffect(() => {
-    GetData()
+    FetchGetAlimentsList()
   }, [])
 
   return (<>
@@ -52,35 +60,31 @@ const ListOfIngredients = () => {
         pageSize={5}
         rowsPerPageOptions={[5]}
         onSelectionModelChange={(d) => {
-          if(d.length > 0)
+          if (d.length > 0)
             setDisabled(false)
-            d.map((e) => arrData.push(Number(e)))
-          if(d.length <= 0)
+          d.map((e) => arrData.push(Number(e)))
+          if (d.length <= 0)
             setDisabled(true)
         }}
         checkboxSelection
       />
     </Box>
 
-    <Button 
-    sx={{ top: '15rem', left: '68%' }} 
-    variant="contained"
-    onClick={() => {
-      arrData.map(async (e) => {
-        console.log('https://localhost:7185/api/Aliments/' + e)
-        fetch('https://localhost:7185/api/Aliments/' + e,{
-          method: 'DELETE'
-        }).then(r => {
-          GetData()
+    <Button
+      sx={{ top: '15rem', left: '68%' }}
+      variant="contained"
+      onClick={() => {
+        arrData.map(async (e) => {
+          console.log('https://localhost:7185/api/Aliments/' + e)
+          FetchDeleteAliment(e)
         })
-      })
-    }}
-    disabled={isDisabled}
+      }}
+      disabled={isDisabled}
     >
       Delete
     </Button>
     <Button sx={{ top: '15rem', left: '70%' }} variant="contained"><Link style={{ textDecoration: 'none', color: 'white' }} to={'/CreateAliment'}>Add</Link></Button>
-    </>
+  </>
 
   );
 }

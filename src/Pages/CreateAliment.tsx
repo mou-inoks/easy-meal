@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
-import { useForm } from "react-hook-form"
+import Autocomplete from '@mui/material/Autocomplete';
+import axios from 'axios';
 
 
 export interface Aliment {
@@ -14,9 +15,6 @@ export interface Aliment {
 
 const CreateAliment = () => {
 
- const valueError = 'Field is mandatory'
- const numberError = 'Please enter a proper ingredient'
-
  const [name, setName] = useState('')
 
  const [TypeId, setTypeId] = useState('')
@@ -26,10 +24,32 @@ const CreateAliment = () => {
  const [TypeError, setTypeError] = useState(false)
 
  const [errorMessage1, setErrorMessage1] =  useState('')
+
  const [errorMessage2, setErrorMessage2] =  useState('')
 
+ const [typeArr, setTypeArr] = useState([])
+
+ const valueError = 'Field is mandatory'
+
+ const numberError = 'Please enter a proper ingredient'
+
+ const FetchGetAllType = () => {
+  axios.get('https://localhost:7185/api/Aliments/Type').then(res => {
+      console.log(res)
+      setTypeArr(res.data)
+    }).catch(err => {
+      console.log(err)
+    })
+ }
+
+ 
+ useEffect(() => {
+  FetchGetAllType()
+}, [])
+console.log(typeArr)
+
  const onSubmit = async () => {
-  if (name == null || name == "" && TypeId == null || TypeId == "" ) {
+  if ((name === null || name === "" )&& (TypeId === null || TypeId === "" )) {
    if(name.search(/\d/) !== -1)
     setErrorMessage1(numberError)
    else if(TypeId.search(/\d/) !== -1)
@@ -48,11 +68,11 @@ const CreateAliment = () => {
    setErrorMessage2(numberError)
    setTypeError(true)
   }
-  if (name == null || name == ""){
+  if (name === null || name === ""){
    setErrorMessage1(valueError)
    setNameError(true)
   }
-  if (TypeId == null || TypeId == ""){
+  if (TypeId === null || TypeId === ""){
    setTypeError(true);
    setErrorMessage2(valueError)
   }
@@ -76,7 +96,6 @@ const CreateAliment = () => {
     });
     alert("Ingredient as been added")
   }
-
  }
 
 
@@ -108,7 +127,13 @@ const CreateAliment = () => {
      </div>
     </Box>
 
-    <Box
+    <Autocomplete
+        sx={{position: 'absolute', left: '43%', top: '30%' }}
+        options={typeArr}
+        onChange={(e) => setTypeId(e.type)}
+        renderInput={(params) => <TextField {...params} label="type" />}
+      />
+    {/* <Box
      component="form"
      sx={{
       '& .MuiTextField-root': { m: 1, width: '25ch' },
@@ -130,7 +155,7 @@ const CreateAliment = () => {
        error={TypeError}
       />
      </div>
-    </Box>
+    </Box> */}
     <Button onClick={onSubmit} sx={{ top: '23rem', left: '48%' }} variant="contained">Add</Button>
    </form>
 
