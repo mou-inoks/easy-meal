@@ -23,6 +23,16 @@ const columns: GridColDef[] = [
 
 const ListOfIngredients = () => {
 
+
+  const GetData = () => {
+    axios.get('https://localhost:7185/api/Aliments').then(res => {
+      console.log(res)
+      setAliments(res.data)
+    }).catch(err => {
+      console.log(err)
+    })
+  }
+
   const [aliments, setAliments] = useState([])
 
   const [isDisabled, setDisabled] = useState(true)
@@ -30,13 +40,8 @@ const ListOfIngredients = () => {
   const [arrData, setArrData] = useState<number[]>([])
 
   useEffect(() => {
-    axios.get('https://localhost:7185/api/Aliments').then(res => {
-      console.log(res)
-      setAliments(res.data)
-    }).catch(err => {
-      console.log(err)
-    })
-  }, [aliments])
+    GetData()
+  }, [])
 
   return (<>
     <Box sx={{ height: 400, width: '40%', alignSelf: 'center', position: 'relative', left: '40%', top: '50%' }}>
@@ -65,6 +70,8 @@ const ListOfIngredients = () => {
         console.log('https://localhost:7185/api/Aliments/' + e)
         fetch('https://localhost:7185/api/Aliments/' + e,{
           method: 'DELETE'
+        }).then(r => {
+          GetData()
         })
       })
     }}
@@ -72,7 +79,6 @@ const ListOfIngredients = () => {
     >
       Delete
     </Button>
-
     <Button sx={{ top: '15rem', left: '70%' }} variant="contained"><Link style={{ textDecoration: 'none', color: 'white' }} to={'/CreateAliment'}>Add</Link></Button>
     </>
 
