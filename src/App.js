@@ -4,6 +4,7 @@ import {Routes, Route} from 'react-router-dom'
 import Grid from '@mui/material/Grid';
 import CreateAliment from './Pages/CreateAliment';
 import Meals from './Pages/Meals';
+import CreateRepas from './Pages/CreateRepas'
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           <Route path='/' element={<MainPage/>}/>
           <Route path='/Aliments' element={<MainPage/>}/>
           <Route path='/CreateAliment' element={<CreateAliment/>}/>
+          <Route path='/CreateRepas' element={<CreateRepas/>}/>
           <Route path='/Meals' element={<Meals/>}/>
         </Routes>
       </Grid>

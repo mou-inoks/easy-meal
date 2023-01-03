@@ -98,7 +98,7 @@ const CreateAliment = () => {
   console.log(TypeId)
   return (
     <>
-      <Typography className='h1'>Listes d'Aliments</Typography>
+      <Typography className='h1'>Créer un Aliment</Typography>
       <form >
         <Box
           component="form"
