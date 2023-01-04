@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
 import Autocomplete from '@mui/material/Autocomplete';
 import axios from 'axios'
-import { Field, Formik, FormikHelpers, Form } from 'formik';
+import { Formik, FormikHelpers, Form } from 'formik';
 interface InterfaceType {
   id: number,
   type: string
@@ -46,7 +46,7 @@ const CreateAliment = () => {
           values: Values,
           { setSubmitting }: FormikHelpers<Values>
         ) => {
-          
+
           axios.post('https://localhost:7185/api/Aliments', {
             name: values.name,
             typeId: values.type
@@ -62,7 +62,6 @@ const CreateAliment = () => {
         }}
       >
         {({ values }) => {
-
 
           return <Form>
             <Box
