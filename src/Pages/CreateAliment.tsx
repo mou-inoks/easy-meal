@@ -36,7 +36,7 @@ const CreateAliment = () => {
 
   return (
     <div>
-      <Typography>Hello</Typography>
+      <Typography className='h1'>Créer un repas</Typography>
       <Formik
         initialValues={{
           name: '',

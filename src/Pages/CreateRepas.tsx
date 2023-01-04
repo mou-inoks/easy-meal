@@ -2,7 +2,7 @@ import { Autocomplete, Box, Button, createFilterOptions, TextField, Typography }
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Formik, FormikHelpers, Form, Field } from 'formik'
-
+import MealsAutocomplete from '../Components/MealAutocomplete'
 interface Values {
   name: string,
   proteine: string,
@@ -102,13 +102,8 @@ const CreateRepas = () => {
               />
             </Box>
 
-            <Autocomplete
-              sx={{ width: 240, position: 'absolute', left: '43.5%', top: '30%' }}
-              getOptionLabel={(options) => options.name}
-              options={proteineArr}
-              onChange={(e, value) => values.proteine = value?.name!}
-              renderInput={(params) => <TextField {...params} name='proteine' label="Protéine" />}
-            />
+            <MealsAutocomplete arr={proteineArr} aliment={values.proteine}/>
+            
             <Autocomplete
               onChange={(e, value) => values.legume = value?.name!}
               getOptionLabel={(options) => options.name}
