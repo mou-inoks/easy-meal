@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridToolbar } from '@mui/x-data-grid';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Button } from '@mui/material';
@@ -8,12 +8,6 @@ import { Link } from 'react-router-dom';
 
 
 const columns: GridColDef[] = [
- {
-  field: 'id',
-  headerName: 'Id',
-  width: 150,
-  editable: true,
- },
  {
   field: 'name',
   headerName: 'Nom',
@@ -60,6 +54,7 @@ const ListOfIngredients = () => {
  return (<>
   <Box sx={{ height: 400, width: '40%', alignSelf: 'center', position: 'relative', left: '40%', top: '50%' }}>
    <DataGrid
+    components={{Toolbar: GridToolbar}}
     sx={{ height: '100%', width: '100%' }}
     rows={repas}
     columns={columns}
@@ -89,6 +84,7 @@ const ListOfIngredients = () => {
   >
    Delete
   </Button>
+
   <Button sx={{ top: '15rem', left: '70%' }} variant="contained"><Link style={{ textDecoration: 'none', color: 'white' }} to={'/CreateRepas'}>Add</Link></Button>
  </>
 

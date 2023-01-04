@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridToolbar } from '@mui/x-data-grid';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Button } from '@mui/material';
@@ -46,7 +46,7 @@ const ListOfIngredients = () => {
       FetchGetAlimentsList()
     })
   }
-  
+
   useEffect(() => {
     FetchGetAlimentsList()
   }, [])
@@ -54,6 +54,7 @@ const ListOfIngredients = () => {
   return (<>
     <Box sx={{ height: 400, width: '40%', alignSelf: 'center', position: 'relative', left: '40%', top: '50%' }}>
       <DataGrid
+        components={{Toolbar: GridToolbar}}
         sx={{ height: '100%', width: '100%' }}
         rows={aliments}
         columns={columns}

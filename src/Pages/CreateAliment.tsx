@@ -44,7 +44,6 @@ const CreateAliment = () => {
   useEffect(() => {
     FetchGetAllType()
   }, [])
-  console.log("type arr", typeArr)
 
   const onSubmit = async () => {
     if ((name === null || name === "") && (TypeId === null || TypeId === "")) {

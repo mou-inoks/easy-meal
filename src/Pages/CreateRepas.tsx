@@ -1,10 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
-import { Button } from '@mui/material';
-import Autocomplete from '@mui/material/Autocomplete';
+import { Autocomplete, Box, Button, createFilterOptions, TextField, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Field } from "formik";
+
+
+interface Values {
+ name: string,
+ proteine: string,
+ legume: string,
+ feculent: string
+}
 
 interface InterfaceAliment {
  id: number;
@@ -12,31 +17,46 @@ interface InterfaceAliment {
  typeId: string;
 }
 
-const CreateAliment = () => {
 
- let ingredients = ""
+const filterOptions = createFilterOptions({
+ matchFrom: 'start',
+ stringify: (option: InterfaceAliment) => option.typeId,
+});
 
- const [name, setName] = useState('')
+const SignupSchema = Yup.object().shape({
+ firstName: Yup.string()
+   .min(2, 'Too Short!')
+   .max(50, 'Too Long!')
+   .required('Required'),
+ lastName: Yup.string()
+   .min(2, 'Too Short!')
+   .max(50, 'Too Long!')
+   .required('Required'),
+ email: Yup.string().email('Invalid email').required('Required'),
+});
 
- let [proteine, setProteine] = useState<string | null>("")
+const CreateRepas = () => {
 
- const [feculents, setFeculents] = useState<string | null>('')
+ const proteineArr: InterfaceAliment[] = []
 
- const [legume, setLegume] = useState<string | null>('')
+ const legumeArr: InterfaceAliment[] = []
 
- const [nameError, setNameError] = useState(false)
+ const feculentArr: InterfaceAliment[] = []
 
- const [TypeError, setTypeError] = useState(false)
-
- const [errorMessage1, setErrorMessage1] = useState('')
-
- const [errorMessage2, setErrorMessage2] = useState('')
 
  const [alimArr, setAlimArr] = useState<InterfaceAliment[]>([])
 
- const valueError = 'Field is mandatory'
-
- const numberError = 'Please enter a proper ingredient'
+ const FeedAllArr = () => {
+  alimArr.map((e) => {
+   if (e.typeId == 'Protéine')
+    proteineArr.push(e)
+   else if (e.typeId == "Légume")
+    legumeArr.push(e)
+   else
+    feculentArr.push(e)
+  })
+ }
+ FeedAllArr()
 
  const FetchGetAllAliments = () => {
   axios.get('https://localhost:7185/api/Aliments').then(res => {
@@ -47,94 +67,99 @@ const CreateAliment = () => {
   })
  }
 
-
  useEffect(() => {
   FetchGetAllAliments()
  }, [])
- console.log("type arr", alimArr)
 
- const onSubmit = async () => {
-  ingredients = proteine + ", " + feculents + ", " + legume
-
-  const data = { name: name, ingredients: ingredients };
-
-  fetch('https://localhost:7185/api/Aliments', {
-   method: 'POST', // or 'PUT'
-   headers: {
-    'Content-Type': 'application/json',
-   },
-   body: JSON.stringify(data),
-  })
-   .then((response) => response.json())
-   .then((data) => {
-    console.log('Success:', data);
-    alert("Ingredient as been added")
-   })
-   .catch((error) => {
-    console.error('Error:', error);
-   });
- }
- console.log(ingredients)
  return (
-  <>
+  <div>
    <Typography className='h1'>Créer un repas</Typography>
-   <form >
-    <Box
-     component="form"
-     sx={{
-      '& .MuiTextField-root': { m: 1, width: '25ch' },
-     }}
-     noValidate
-     autoComplete="off"
-    >
-     <div>
-      <TextField
-       value={name}
-       onClick={() => setNameError(false)}
-       onChange={(e) => setName(e.target.value)}
-       name='Nom'
-       sx={{ position: 'absolute', left: '43%', top: '20%' }}
-       required
-       helperText={errorMessage1}
-       error={nameError}
-       id="outlined-required"
-       label="Nom"
-      />
-     </div>
-    </Box>
+   <Formik
+    initialValues={{
+     name: '',
+     proteine: '',
+     legume: '',
+     feculent: '',
+    }}
+    onSubmit={(
+     values: Values,
+     { setSubmitting }: FormikHelpers<Values>
+    ) => {
 
-    <Autocomplete
-     sx={{ width: 240, position: 'absolute', left: '43.5%', top: '30%' }}
-     options={alimArr.map((e) => {
-        if(e.typeId == 'Protéines')
-         return e.name
-     })}
-     onChange={(e,value) => setProteine(value)}
-     renderInput={(params) => <TextField {...params} label="Protéine" />}
-    />
-    <Autocomplete
-     onChange={(e, value) => setFeculents(value)}
-     sx={{ width: 240, position: 'absolute', left: '43.5%', top: '39%' }}
-     options={alimArr.map((e) => {
-       return e.name
+     const ingredients = values.proteine + ", " + values.feculent + ", " + values.legume
 
-     })}
-     renderInput={(params) => <TextField {...params} label="Légume" />}
-    />
-    <Autocomplete
-     onChange={(e, value) => setLegume(value)}
-     sx={{ width: 240, position: 'absolute', left: '43.5%', top: '48%' }}
-     options={alimArr.map((e) => {
-       return e.name
-     })}
-     renderInput={(params) => <TextField {...params} label="Féculents" />}
-    />
-    <Button onClick={onSubmit} sx={{ top: '35rem', left: '47.5%' }} variant="contained">Add</Button>
-   </form>
+     const data = { name: values.name, ingrédients: ingredients };
 
+     fetch('https://localhost:7185/api/Aliments/Repas', {
+      method: 'POST', // or 'PUT'
+      headers: {
+       'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+     })
+      .then((response) => response.json())
+      .then((data) => {
+       console.log('Success:', data);
+       alert("Ingredient as been added")
+       setSubmitting(true)
+      })
+      .catch((error) => {
+       console.error('Error:', error);
+      });
+    }}
+   >
+    <Form>
+     <Box
+      component="form"
+      sx={{
+       '& .MuiTextField-root': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+     >
+      <div>
+       <TextField
+        name='Nom'
+        sx={{ position: 'absolute', left: '43%', top: '20%' }}
+        required
+        id="outlined-required"
+        label="Nom"
+       />
+      </div>
+     </Box>
 
-  </>
+     <Autocomplete
+      sx={{ width: 240, position: 'absolute', left: '43.5%', top: '30%' }}
+      filterOptions={filterOptions}
+      getOptionLabel={(options) => options.name}
+      options={proteineArr}
+      onChange={(e, value) => value?.name!}
+      renderInput={(params) => <TextField {...params} label="Protéine" />}
+     />
+     <Autocomplete
+      onChange={(e, value) => value?.name!}
+      filterOptions={filterOptions}
+      getOptionLabel={(options) => options.name}
+      sx={{ width: 240, position: 'absolute', left: '43.5%', top: '39%' }}
+      options={legumeArr}
+      renderInput={(params) => <TextField {...params} label="Légume" />}
+     />
+     <Autocomplete
+      onChange={(e, value) => value?.name!}
+      filterOptions={filterOptions}
+      getOptionLabel={(options) => options.name}
+      sx={{ width: 240, position: 'absolute', left: '43.5%', top: '48%' }}
+      options={feculentArr}
+      renderInput={(params) => <TextField {...params} label="Féculent" />}
+     />
+
+     <Button type='submit' sx={{ top: '35rem', left: '47.5%' }} variant="contained">Add</Button>
+
+    </Form>
+   </Formik>
+
+  </div>
  )
 }
 
-export default CreateAliment
+export default CreateRepas
