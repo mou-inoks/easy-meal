@@ -4,8 +4,7 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
 import Autocomplete from '@mui/material/Autocomplete';
-import axios from 'axios';
-
+import axios from 'axios'
 interface InterfaceType {
   id: number;
   type: string
@@ -94,7 +93,6 @@ const CreateAliment = () => {
         });
     }
   }
-  console.log(TypeId)
   return (
     <>
       <Typography className='h1'>Créer un Aliment</Typography>
