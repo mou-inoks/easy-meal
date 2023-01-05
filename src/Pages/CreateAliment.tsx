@@ -5,7 +5,9 @@ import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
 import Autocomplete from '@mui/material/Autocomplete';
 import axios from 'axios'
-import { Formik, FormikHelpers, Form } from 'formik';
+import { Formik, FormikHelpers, Form, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+
 interface InterfaceType {
   id: number,
   type: string
@@ -14,6 +16,8 @@ interface InterfaceType {
 const CreateAliment = () => {
 
   const [typeArr, setTypeArr] = useState<InterfaceType[]>([])
+
+  const [errorName, setErrorName] = useState(false)
   console.log(typeArr)
   const FetchGetAllType = () => {
     axios.get('https://localhost:7185/api/Aliments/Type').then(res => {
@@ -31,8 +35,18 @@ const CreateAliment = () => {
 
   interface Values {
     name: string,
-    type: string,
+    typeId: string,
   }
+
+  const CreateSchemaValidation = Yup.object().shape({
+    name: Yup.string()
+          .max(100, 'Must be 100 characters or less you stupid')
+          .min(3, 'Be serious please :|')
+          .required('Mandatory'),
+          type: Yup.string().required('Mandatory'),
+    typeId: Yup.string().required('Mandatory')
+        
+  })
 
   return (
     <div>
@@ -40,8 +54,9 @@ const CreateAliment = () => {
       <Formik
         initialValues={{
           name: '',
-          type: ''
+          typeId: ''
         }}
+        validationSchema={CreateSchemaValidation}
         onSubmit={(
           values: Values,
           { setSubmitting }: FormikHelpers<Values>
@@ -49,7 +64,7 @@ const CreateAliment = () => {
 
           axios.post('https://localhost:7185/api/Aliments', {
             name: values.name,
-            typeId: values.type
+            typeId: values.typeId
           })
             .then(function (response) {
               setSubmitting(true)
@@ -61,7 +76,7 @@ const CreateAliment = () => {
 
         }}
       >
-        {({ values }) => {
+        {({ values, errors, touched }) => {
 
           return <Form>
             <Box
@@ -80,16 +95,20 @@ const CreateAliment = () => {
                   required
                   id="outlined-required"
                   label="Nom"
+                  error={touched.name}
                 />
+                {errors.name && touched.name && <div style={{color: '#d32f5a',position: 'absolute', left: '43.5%', top: '26%'}}>{errors.name}</div>}
               </div>
             </Box>
             <Autocomplete
-              onChange={(e, value) => values.type = value?.type!}
+              onChange={(e, value) => values.typeId = value?.type!}
               getOptionLabel={(options) => options.type}
               sx={{ width: 240, position: 'absolute', left: '43.5%', top: '30%' }}
               options={typeArr}
               renderInput={(params) => <TextField {...params} label="Type" />}
             />
+            {errors.typeId && touched.typeId && <div style={{color: '#d32f5a',position: 'absolute', left: '43.5%', top: '36%'}}>{errors.typeId}</div>}
+
             <Button type='submit' sx={{ top: '23rem', left: '48%' }} variant="contained">Add</Button>
 
           </Form>
