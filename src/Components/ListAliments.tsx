@@ -84,7 +84,7 @@ const ListOfIngredients = () => {
     >
       Delete
     </Button>
-    <Button sx={{ top: '15rem', left: '70%' }} variant="contained"><Link style={{ textDecoration: 'none', color: 'white' }} to={'/CreateAliment'}>Add</Link></Button>
+    <Button sx={{ top: '15rem', left: '70%' }} variant="contained"><Link style={{ textDecoration: 'none', color: 'white' }} to={'/create-aliment'}>Add</Link></Button>
   </>
 
   );

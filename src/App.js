@@ -16,10 +16,10 @@ const App = () => {
         <Grid item xs={12} />
         <Routes>
           <Route path='/' element={<MainPage/>}/>
-          <Route path='/Aliments' element={<MainPage/>}/>
-          <Route path='/CreateAliment' element={<CreateAliment/>}/>
-          <Route path='/CreateRepas' element={<CreateRepas/>}/>
-          <Route path='/Meals' element={<Meals/>}/>
+          <Route path='/aliments' element={<MainPage/>}/>
+          <Route path='/create-aliment' element={<CreateAliment/>}/>
+          <Route path='/create-repas' element={<CreateRepas/>}/>
+          <Route path='/meals' element={<Meals/>}/>
         </Routes>
       </Grid>
     </>
