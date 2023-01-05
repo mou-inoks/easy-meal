@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Formik, FormikHelpers, Form, Field } from 'formik'
 import MealsAutocomplete from '../Components/MealAutocomplete'
-
+import Navbar from '../Components/Navbar'
 interface Values {
   name: string,
   proteine: InterfaceAliment | null,
@@ -55,6 +55,7 @@ const CreateRepas = () => {
 
   return (
     <div>
+      <Navbar/>
       <Typography sx={{ fontWeight: 800, fontFamily: 'Gilroy,sans-serif', fontSize: '60px' }} className='h1'>Créer un repas</Typography>
       <Formik<Values>
         initialValues={{

@@ -7,6 +7,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import axios from 'axios'
 import { Formik, FormikHelpers, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import Navbar from '../Components/Navbar'
 
 interface InterfaceType {
   id: number,
@@ -50,6 +51,7 @@ const CreateAliment = () => {
 
   return (
     <div>
+      <Navbar/>
       <Typography sx={{fontWeight: 800,fontFamily: 'Gilroy,sans-serif', fontSize: '60px' }} className='h1'>Créer un aliment</Typography>
       <Formik
         initialValues={{
