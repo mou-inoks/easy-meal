@@ -1,6 +1,7 @@
 import React from 'react'
 import { Autocomplete } from '@mui/material';
 import TextField from '@mui/material/TextField';
+import { useFormikContext } from 'formik';
 
 
 interface Aliments {
@@ -10,17 +11,19 @@ interface Aliments {
 
 interface FormikMealAutocompleteProps {
  arr: Aliments[],
- aliment: string
+ aliment: string,
+ label: string
 }
 
 const MealsAutocomplete = (props: FormikMealAutocompleteProps) => {
+ const formikProps = useFormikContext()
  return (
   <Autocomplete
-   onChange={(e, value) => props.aliment = value?.name!}
+   onChange={(e, v) => formikProps.setFieldValue(props.aliment ,v)}
    getOptionLabel={(options) => options.name}
-   sx={{ width: 240, position: 'absolute', left: '43.5%', top: '30%' }}
+   sx={{ width: 240}}
    options={props.arr}
-   renderInput={(params) => <TextField {...params} label="Proteine" />}
+   renderInput={(params) => <TextField {...params} label={props.label} />}
   />
  )
 }

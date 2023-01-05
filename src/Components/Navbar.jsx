@@ -50,7 +50,7 @@ const DrawerAppBar = () => {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar component="nav">
-        <Toolbar sx={{ backgroundColor: '#191919' }}>
+        <Toolbar sx={{ backgroundColor: '#1a1d27' }}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -63,7 +63,7 @@ const DrawerAppBar = () => {
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' }, fontFamily: 'Gilroy,sans-serif', fontWeight: 400  }}
+            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' }, fontFamily: 'Gilroy,sans-serif', fontWeight: 500  }}
           >
             EasyMeal
           </Typography>

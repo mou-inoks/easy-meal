@@ -1,4 +1,4 @@
-import { Autocomplete, Box, Button, createFilterOptions, TextField, Typography } from '@mui/material'
+import { Autocomplete, Box, Button, Grid, TextField, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Formik, FormikHelpers, Form, Field } from 'formik'
@@ -6,9 +6,9 @@ import MealsAutocomplete from '../Components/MealAutocomplete'
 
 interface Values {
   name: string,
-  proteine: string,
-  legume: string,
-  feculent: string
+  proteine: InterfaceAliment | null,
+  legume: InterfaceAliment | null,
+  feculent: InterfaceAliment | null
 }
 
 interface InterfaceAliment {
@@ -55,19 +55,19 @@ const CreateRepas = () => {
 
   return (
     <div>
-      <Typography sx={{fontWeight: 800,fontFamily: 'Gilroy,sans-serif', fontSize: '60px' }} className='h1'>Créer un repas</Typography>
+      <Typography sx={{ fontWeight: 800, fontFamily: 'Gilroy,sans-serif', fontSize: '60px' }} className='h1'>Créer un repas</Typography>
       <Formik<Values>
         initialValues={{
           name: '',
-          proteine: '',
-          legume: '',
-          feculent: '',
+          proteine: null,
+          legume: null,
+          feculent: null,
         }}
         onSubmit={(
           values: Values,
           { setSubmitting }: FormikHelpers<Values>
         ) => {
-          const ingredients = values.proteine + ", " + values.feculent + ", " + values.legume
+          const ingredients = values.proteine?.name + ", " + values.feculent?.name + ", " + values.legume?.name
 
           axios.post('https://localhost:7185/api/Aliments/Repas', {
             name: values.name,
@@ -83,8 +83,7 @@ const CreateRepas = () => {
 
         }}
       >
-        {({ values }) => {
-          console.log(values.name ,values.feculent,values.proteine, values.legume)
+        {({ values, handleChange, setFieldValue }) => {
           return <Form>
             <Box
               component="form"
@@ -95,7 +94,7 @@ const CreateRepas = () => {
               autoComplete="off"
             >
               <TextField
-                onChange={(e) => values.name = e.target.value}
+                onChange={handleChange}
                 name='name'
                 sx={{ position: 'absolute', left: '43%', top: '20%' }}
                 required
@@ -104,22 +103,17 @@ const CreateRepas = () => {
               />
             </Box>
 
-            <MealsAutocomplete arr={proteineArr} aliment={values.proteine}/>
+            <Grid sx={{ position: 'absolute', left: '43.5%', top: '30%' }}>
+              <MealsAutocomplete arr={proteineArr} aliment='proteine' label='Protéines' />
+            </Grid>
 
-            <Autocomplete
-              onChange={(e, value) => values.legume = value?.name!}
-              getOptionLabel={(options) => options.name}
-              sx={{ width: 240, position: 'absolute', left: '43.5%', top: '39%' }}
-              options={legumeArr}
-              renderInput={(params) => <TextField {...params} label="Légume" />}
-            />
-            <Autocomplete
-              onChange={(e, value) => values.feculent = value?.name!}
-              getOptionLabel={(options) => options.name}
-              sx={{ width: 240, position: 'absolute', left: '43.5%', top: '48%' }}
-              options={feculentArr}
-              renderInput={(params) => <TextField {...params} label="Féculent" />}
-            />
+            <Grid sx={{ position: 'absolute', left: '43.5%', top: '40%' }}>
+              <MealsAutocomplete arr={legumeArr} aliment='legume' label='Légumes' />
+            </Grid>
+
+            <Grid sx={{ position: 'absolute', left: '43.5%', top: '50%' }}>
+              <MealsAutocomplete arr={feculentArr} aliment='feculent' label='Féculents' />
+            </Grid>
 
             <Button type='submit' sx={{ top: '35rem', left: '47.5%' }} variant="contained">Add</Button>
           </Form>

@@ -4,7 +4,13 @@ import React from 'react'
 
 export default function Meals() {
     return (
-        <div style={{height: '100%', width: '100%',backgroundColor: '#f1f4f8'}} className='MainPage'>
+        <div style={{
+            height: '100%', 
+            width: '100%',
+            backgroundColor: '#f1f4f8',
+            }} 
+            className='MainPage'
+            >
             <Grid sx={{height: '100%', width: '100%', backgroundColor: '#f1f4f8'}} container spacing={2}>
 
                 <Grid item xs={12}>
