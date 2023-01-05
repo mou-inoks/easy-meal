@@ -28,7 +28,7 @@ const DrawerAppBar = () => {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', position: 'absolute' }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
+      <Typography  variant="h6" sx={{ my: 2, fontFamily: 'Gilroy,sans-serif', fontWeight: 400  }}>
         EasyMeal
       </Typography>
       <Divider />
@@ -36,7 +36,7 @@ const DrawerAppBar = () => {
         {navItems.map((item) => (
           <ListItem key={item} disablePadding>
             <ListItemButton sx={{ textAlign: 'center' }}>
-              <Link style={{ textDecoration: 'none', color: 'white' }} to={`/${item}`}>{item}</Link>
+              <Link style={{ textDecoration: 'none', color: 'white'}} to={`/${item}`}>{item}</Link>
             </ListItemButton>
           </ListItem>
         ))}
@@ -63,14 +63,14 @@ const DrawerAppBar = () => {
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' }, fontFamily: 'Gilroy,sans-serif', fontWeight: 400  }}
           >
             EasyMeal
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (
               <Button key={item} sx={{ color: '#fff', marginLeft: 3, backgroundColor: '#2196F3' }}>
-                <Link style={{ textDecoration: 'none', color: 'white' }} to={`/${item}`}>{item}</Link>
+                <Link style={{ textDecoration: 'none', color: 'white', fontFamily: 'Gilroy,sans-serif' }} to={`/${item}`}>{item}</Link>
               </Button>
             ))}
           </Box>

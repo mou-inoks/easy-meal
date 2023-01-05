@@ -13,17 +13,15 @@ interface FormikMealAutocompleteProps {
  aliment: string
 }
 
-const MealsAutocomplete = (props: FormikMealAutocompleteProps,) => {
+const MealsAutocomplete = (props: FormikMealAutocompleteProps) => {
  return (
-  <>
-   <Autocomplete
-    onChange={(e, value) => props.aliment = value?.name!}
-    getOptionLabel={(options) => options.name}
-    sx={{ width: 240, position: 'absolute', left: '43.5%', top: '30%' }}
-    options={props.arr}
-    renderInput={(params) => <TextField {...params} label="Proteine" />}
-   />
-  </>
+  <Autocomplete
+   onChange={(e, value) => props.aliment = value?.name!}
+   getOptionLabel={(options) => options.name}
+   sx={{ width: 240, position: 'absolute', left: '43.5%', top: '30%' }}
+   options={props.arr}
+   renderInput={(params) => <TextField {...params} label="Proteine" />}
+  />
  )
 }
 

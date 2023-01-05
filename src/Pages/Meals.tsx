@@ -4,11 +4,11 @@ import React from 'react'
 
 export default function Meals() {
     return (
-        <div className='MainPage'>
-            <Grid container spacing={2}>
+        <div style={{height: '100%', width: '100%',backgroundColor: '#f1f4f8'}} className='MainPage'>
+            <Grid sx={{height: '100%', width: '100%', backgroundColor: '#f1f4f8'}} container spacing={2}>
 
                 <Grid item xs={12}>
-                    <Typography className='h1'>
+                    <Typography sx={{fontWeight: 800,fontFamily: 'Gilroy,sans-serif', fontSize: '60px' }} className='h1'>
                         Listes de repas
                     </Typography>
                 </Grid>

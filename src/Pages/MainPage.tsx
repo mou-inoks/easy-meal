@@ -11,7 +11,7 @@ function MainPage() {
             <Grid container spacing={2}>
 
                 <Grid item xs={12}>
-                    <Typography className='h1'>
+                    <Typography sx={{fontWeight: 800,fontFamily: 'Gilroy,sans-serif', fontSize: '60px' }} className='h1'>
                         Listes d'Aliments
                     </Typography>
                 </Grid>

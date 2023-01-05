@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Formik, FormikHelpers, Form, Field } from 'formik'
 import MealsAutocomplete from '../Components/MealAutocomplete'
+
 interface Values {
   name: string,
   proteine: string,
@@ -54,7 +55,7 @@ const CreateRepas = () => {
 
   return (
     <div>
-      <Typography className='h1'>Créer un repas</Typography>
+      <Typography sx={{fontWeight: 800,fontFamily: 'Gilroy,sans-serif', fontSize: '60px' }} className='h1'>Créer un repas</Typography>
       <Formik<Values>
         initialValues={{
           name: '',
@@ -83,6 +84,7 @@ const CreateRepas = () => {
         }}
       >
         {({ values }) => {
+          console.log(values.name ,values.feculent,values.proteine, values.legume)
           return <Form>
             <Box
               component="form"
@@ -103,7 +105,7 @@ const CreateRepas = () => {
             </Box>
 
             <MealsAutocomplete arr={proteineArr} aliment={values.proteine}/>
-            
+
             <Autocomplete
               onChange={(e, value) => values.legume = value?.name!}
               getOptionLabel={(options) => options.name}
@@ -123,7 +125,6 @@ const CreateRepas = () => {
           </Form>
         }}
       </Formik>
-
     </div>
   )
 }
