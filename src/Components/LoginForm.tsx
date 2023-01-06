@@ -47,7 +47,7 @@ const LoginForm = () => {
 
   return (
     <div>
-      <Typography sx={{ fontWeight: 800, fontFamily: 'Gilroy,sans-serif', fontSize: '60px', color: '#001e3c' }} className='h1'>Login</Typography>
+      <Typography sx={{ fontWeight: 800, fontFamily: 'Gilroy,sans-serif', fontSize: '60px', color: '#001e3c' }} className='h1'>Connexion</Typography>
       <Formik
         initialValues={{
           userName: '',
@@ -78,12 +78,12 @@ const LoginForm = () => {
                   sx={{ width: '40px', position: 'absolute', left: '71.5%', top: '30%', color: 'white' }}
                   required
                   id="outlined-required"
-                  label="Username"
+                  label="Nom d'utilisateur"
                 />
               </div>
               <div>
               <FormControl sx={{ m: 1, width: '25ch', position: 'absolute', left: '71.5%', top: '40%', color: 'white' }} variant="outlined">
-                <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                <InputLabel htmlFor="outlined-adornment-password">Mot de passe</InputLabel>
                 <OutlinedInput
                   onChange={(e) => values.password = e.target.value}
                   id="outlined-adornment-password"
@@ -100,7 +100,7 @@ const LoginForm = () => {
                       </IconButton>
                     </InputAdornment>
                   }
-                  label="Password"
+                  label="Mot de passe "
                 />
               </FormControl>
               </div>
@@ -115,7 +115,7 @@ const LoginForm = () => {
               else
                 console.log("not existing ")
 
-            }} sx={{ top: '30rem', left: '45%' }} variant="contained">Connect</Button>
+            }} sx={{ top: '30rem', left: '45%' }} variant="contained">Connexion</Button>
 
             <p style={{
               color: 'black',

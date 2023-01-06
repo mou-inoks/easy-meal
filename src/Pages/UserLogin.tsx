@@ -27,7 +27,7 @@ export default function UserLogin() {
  return (<>
   <div style={{ width: '100%', height: '100vh', display: 'flex', flexDirection: 'row' }}>
    <div style={{ width: '55%', height: '100vh', backgroundColor: '#001e3c', display: 'flex' }}>
-    <Typography sx={h1style}>Welcome To Easy Meal</Typography>
+    <Typography sx={h1style}>Bienvenu sur Easy Meal</Typography>
     <p style={{
      fontWeight: 600,
      fontFamily: 'Gilroy,sans-serif',
@@ -36,8 +36,9 @@ export default function UserLogin() {
      top: '54%',
      height: '20px',
      position:'relative',
-     right:'52%'
-    }}>A tool that is
+     right:'47%',
+     width: '250px'
+    }}>Une application
     </p>
 
     <span style={{
@@ -48,10 +49,11 @@ export default function UserLogin() {
      top: '56.75%',
      height: '20px',
      position:'relative',
-     right:'51%'
+     right:'46.8%',
+     width:'7rem'
     }}>
      <Typewriter
-      words={['fast', 'simple','cool :)']}
+      words={['rapide', 'simple','pratique','cool :)']}
       loop={5}
       cursor
       cursorStyle='|'

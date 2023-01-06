@@ -72,7 +72,7 @@ const ListOfIngredients = () => {
     </Box>
 
     <Button
-      sx={{ top: '15rem', left: '68%' }}
+      sx={{ top: '15rem', left: '65%' }}
       variant="contained"
       onClick={() => {
         arrData.map(async (e) => {
@@ -82,10 +82,10 @@ const ListOfIngredients = () => {
       }}
       disabled={isDisabled}
     >
-      Delete
+      Supprimer
     </Button>
 
-    <Button sx={{ top: '15rem', left: '70%' }} variant="contained"><Link style={{ textDecoration: 'none', color: 'white' }} to={'/create-repas'}>Add</Link></Button>
+    <Button sx={{ top: '15rem', left: '66%' }} variant="contained"><Link style={{ textDecoration: 'none', color: 'white' }} to={'/create-repas'}>Ajouter</Link></Button>
   </>
 
   );

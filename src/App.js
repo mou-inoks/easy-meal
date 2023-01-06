@@ -17,7 +17,7 @@ const App = () => {
           <Route path='/aliments' element={<MainPage/>}/>
           <Route path='/create-aliment' element={<CreateAliment/>}/>
           <Route path='/create-repas' element={<CreateRepas/>}/>
-          <Route path='/meals' element={<Meals/>}/>
+          <Route path='/repas' element={<Meals/>}/>
         </Routes>
       </Grid>
     </>

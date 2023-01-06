@@ -16,7 +16,7 @@ import { Link } from 'react-router-dom';
 
 
 const drawerWidth = 240;
-const navItems = ['aliments', 'meals'];
+const navItems = ['aliments', 'repas'];
 
 const DrawerAppBar = () => {
   const { window } = Window;
