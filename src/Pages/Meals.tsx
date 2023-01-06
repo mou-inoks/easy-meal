@@ -17,7 +17,7 @@ export default function Meals() {
 
                 <Grid item xs={12}>
                     <Typography sx={{fontWeight: 800,fontFamily: 'Gilroy,sans-serif', fontSize: '60px' }} className='h1'>
-                        Listes de repas
+                        Repas 🍲
                     </Typography>
                 </Grid>
                 <Grid item xs={12} />

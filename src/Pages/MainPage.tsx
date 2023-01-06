@@ -14,7 +14,7 @@ function MainPage() {
 
                 <Grid item xs={12}>
                     <Typography sx={{fontWeight: 800,fontFamily: 'Gilroy,sans-serif', fontSize: '60px' }} className='h1'>
-                        Listes d'Aliments
+                        Aliments 🥕
                     </Typography>
                 </Grid>
                 <Grid item xs={12} />

@@ -1,7 +1,7 @@
-import { Autocomplete, Box, Button, Grid, TextField, Typography } from '@mui/material'
+import { Box, Button, Grid, TextField, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Formik, FormikHelpers, Form, Field } from 'formik'
+import { Formik, FormikHelpers, Form } from 'formik'
 import MealsAutocomplete from '../Components/MealAutocomplete'
 import Navbar from '../Components/Navbar'
 interface Values {
@@ -84,7 +84,7 @@ const CreateRepas = () => {
 
         }}
       >
-        {({ values, handleChange, setFieldValue }) => {
+        {({ handleChange }) => {
           return <Form>
             <Box
               component="form"
@@ -116,7 +116,7 @@ const CreateRepas = () => {
               <MealsAutocomplete arr={feculentArr} aliment='feculent' label='Féculents' />
             </Grid>
 
-            <Button type='submit' sx={{ top: '35rem', left: '47.5%' }} variant="contained">Add</Button>
+            <Button type='submit' sx={{ top: '35rem', left: '47.5%' }} variant="contained">Ajouter</Button>
           </Form>
         }}
       </Formik>

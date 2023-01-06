@@ -50,7 +50,7 @@ const DrawerAppBar = () => {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar component="nav">
-        <Toolbar sx={{ backgroundColor: '#1a1d27' }}>
+        <Toolbar sx={{ backgroundColor: '#0a1929' }}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
