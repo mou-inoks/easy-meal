@@ -12,13 +12,13 @@ const columns: GridColDef[] = [
     field: 'name',
     headerName: 'Nom',
     width: 150,
-    editable: true,
+    editable: false,
   },
   {
     field: 'ingrédients',
     headerName: 'Ingrédients',
     width: 500,
-    editable: true,
+    editable: false,
   },
 ];
 
