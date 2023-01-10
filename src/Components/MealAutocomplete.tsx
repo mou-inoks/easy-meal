@@ -16,13 +16,18 @@ interface FormikMealAutocompleteProps {
 }
 
 const MealsAutocomplete = (props: FormikMealAutocompleteProps) => {
+ const nArr: Aliments[] = []
+ props.arr.map((e) => {
+  if(e.typeId == props.label)
+   nArr.push(e)
+ })
  const formikProps = useFormikContext()
  return (
   <Autocomplete
    onChange={(e, v) => formikProps.setFieldValue(props.aliment ,v)}
    getOptionLabel={(options) => options.name}
    sx={{ width: 240}}
-   options={props.arr}
+   options={nArr}
    renderInput={(params) => <TextField {...params} label={props.label} />}
   />
  )

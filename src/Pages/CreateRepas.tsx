@@ -20,25 +20,7 @@ interface InterfaceAliment {
 
 const CreateRepas = () => {
 
-  const proteineArr: InterfaceAliment[] = []
-
-  const legumeArr: InterfaceAliment[] = []
-
-  const feculentArr: InterfaceAliment[] = []
-
   const [alimArr, setAlimArr] = useState<InterfaceAliment[]>([])
-
-  const FeedAllArr = () => {
-    alimArr.map((e) => {
-      if (e.typeId == 'Protéine')
-        proteineArr.push(e)
-      else if (e.typeId == "Légume")
-        legumeArr.push(e)
-      else
-        feculentArr.push(e)
-    })
-  }
-  FeedAllArr()
 
   const FetchGetAllAliments = () => {
     axios.get('https://localhost:7185/api/Aliments').then(res => {
@@ -105,15 +87,15 @@ const CreateRepas = () => {
             </Box>
 
             <Grid sx={{ position: 'absolute', left: '43.5%', top: '30%' }}>
-              <MealsAutocomplete arr={proteineArr} aliment='proteine' label='Protéines' />
+              <MealsAutocomplete arr={alimArr} aliment='proteine' label='Protéine' />
             </Grid>
 
             <Grid sx={{ position: 'absolute', left: '43.5%', top: '40%' }}>
-              <MealsAutocomplete arr={legumeArr} aliment='legume' label='Légumes' />
+              <MealsAutocomplete arr={alimArr} aliment='legume' label='Légume' />
             </Grid>
 
             <Grid sx={{ position: 'absolute', left: '43.5%', top: '50%' }}>
-              <MealsAutocomplete arr={feculentArr} aliment='feculent' label='Féculents' />
+              <MealsAutocomplete arr={alimArr} aliment='feculent' label='Féculent' />
             </Grid>
 
             <Button type='submit' sx={{ top: '35rem', left: '47.5%' }} variant="contained">Ajouter</Button>
