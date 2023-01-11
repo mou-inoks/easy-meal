@@ -71,7 +71,7 @@ const CreateRepas = () => {
             <Box
               component="form"
               sx={{
-                '& .MuiTextField-root': { m: 1, width: '25ch' },
+                '& .MuiTextField-root': { m: 1, width: 240 },
               }}
               noValidate
               autoComplete="off"
@@ -79,22 +79,22 @@ const CreateRepas = () => {
               <TextField
                 onChange={handleChange}
                 name='name'
-                sx={{ position: 'absolute', left: '43%', top: '20%' }}
+                sx={{ position: 'absolute', left: '43%', top: '30%' }}
                 required
                 id="name"
                 label="Nom"
               />
             </Box>
 
-            <Grid sx={{ position: 'absolute', left: '43.5%', top: '30%' }}>
+            <Grid sx={{ position: 'absolute', left: '43.5%', top: '40%' }}>
               <MealsAutocomplete arr={alimArr} aliment='proteine' label='Protéine' />
             </Grid>
 
-            <Grid sx={{ position: 'absolute', left: '43.5%', top: '40%' }}>
+            <Grid sx={{ position: 'absolute', left: '43.5%', top: '50%' }}>
               <MealsAutocomplete arr={alimArr} aliment='legume' label='Légume' />
             </Grid>
 
-            <Grid sx={{ position: 'absolute', left: '43.5%', top: '50%' }}>
+            <Grid sx={{ position: 'absolute', left: '43.5%', top: '60%' }}>
               <MealsAutocomplete arr={alimArr} aliment='feculent' label='Féculent' />
             </Grid>
 

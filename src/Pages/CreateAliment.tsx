@@ -65,13 +65,13 @@ const CreateAliment = () => {
             });
         }}
       >
-        {({ values, handleChange, setFieldValue }) => {
+        {({ values, handleChange }) => {
 
           return <Form>
             <Box
               component="form"
               sx={{
-                '& .MuiTextField-root': { m: 1, width: '25ch' },
+                '& .MuiTextField-root': { m: 1, width: 240 },
               }}
               noValidate
               autoComplete="off"
@@ -80,7 +80,7 @@ const CreateAliment = () => {
                 <TextField
                   onChange={handleChange}
                   name='name'
-                  sx={{ position: 'absolute', left: '43%', top: '20%' }}
+                  sx={{ position: 'absolute', left: '43%', top: '30%' }}
                   required
                   id="outlined-required"
                   label="Nom"
@@ -90,7 +90,7 @@ const CreateAliment = () => {
             <Autocomplete
               onChange={(e, v) => values.typeId = v?.type!}
               getOptionLabel={(options) => options.type}
-              sx={{ width: 240, position: 'absolute', left: '43.5%', top: '30%' }}
+              sx={{ width: 240, position: 'absolute', left: '43.5%', top: '40%' }}
               options={typeArr}
               renderInput={(params) => <TextField {...params} label="Type" />}
             />

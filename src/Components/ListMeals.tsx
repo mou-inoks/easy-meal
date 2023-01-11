@@ -52,7 +52,7 @@ const ListOfIngredients = () => {
   }, [])
 
   return (<>
-    <Box sx={{ height: 400, width: '40%', alignSelf: 'center', position: 'relative', left: '40%', top: '50%' }}>
+    <Box sx={{ height: 400, width: '40%', alignSelf: 'center', position: 'relative', left: '40%', top: '30%' }}>
       <DataGrid
         components={{ Toolbar: GridToolbar }}
         sx={{ height: '100%', width: '100%' }}
@@ -72,7 +72,7 @@ const ListOfIngredients = () => {
     </Box>
 
     <Button
-      sx={{ top: '15rem', left: '65%' }}
+      sx={{ top: '10rem', left: '59%' }}
       variant="contained"
       onClick={() => {
         arrData.map(async (e) => {
@@ -85,7 +85,7 @@ const ListOfIngredients = () => {
       Supprimer
     </Button>
 
-    <Button sx={{ top: '15rem', left: '66%' }} variant="contained"><Link style={{ textDecoration: 'none', color: 'white' }} to={'/create-repas'}>Ajouter</Link></Button>
+    <Button sx={{ top: '10rem', left: '60%' }} variant="contained"><Link style={{ textDecoration: 'none', color: 'white' }} to={'/create-repas'}>Ajouter</Link></Button>
   </>
 
   );
