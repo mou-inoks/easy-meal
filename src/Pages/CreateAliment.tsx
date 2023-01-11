@@ -22,7 +22,20 @@ interface Values {
 
 const CreateAliment = () => {
 
-  const [typeArr, setTypeArr] = useState<InterfaceType[]>([])
+    const [nameError, setNameError] = useState(false)
+    const [typeError, setTypeError] = useState(false)
+    const [typeArr, setTypeArr] = useState<InterfaceType[]>([])
+
+    const SignupSchema = Yup.object().shape({
+        name: Yup.string()
+            .min(2, 'Too Short!')
+            .max(50, 'Too Long!')
+            .required('Required'),
+        typeId: Yup.string()
+            .min(2, 'Too Short!')
+            .max(50, 'Too Long!')
+            .required('Required'),
+    });
 
   console.log(typeArr)
   const FetchGetAllType = () => {
@@ -33,7 +46,6 @@ const CreateAliment = () => {
       console.log(err)
     })
   }
-
 
   useEffect(() => {
     FetchGetAllType()
@@ -48,6 +60,7 @@ const CreateAliment = () => {
           name: '',
           typeId: ''
         }}
+        validationSchema={SignupSchema}
         onSubmit={(
           values: Values,
           { setSubmitting }: FormikHelpers<Values>
@@ -65,8 +78,11 @@ const CreateAliment = () => {
             });
         }}
       >
-        {({ values, handleChange }) => {
-
+        {({ values, handleChange, touched,errors }) => {
+            if(errors.name)
+                setNameError(true)
+            if(errors.typeId)
+                setTypeError(true)
           return <Form>
             <Box
               component="form"
@@ -84,7 +100,12 @@ const CreateAliment = () => {
                   required
                   id="outlined-required"
                   label="Nom"
+                  error={nameError}
+                  onError={() => setNameError(true)}
                 />
+                  {errors.name && touched.name ? (
+                      <div  >{errors.name}</div>
+                  ) : null}
               </div>
             </Box>
             <Autocomplete
@@ -92,6 +113,7 @@ const CreateAliment = () => {
               getOptionLabel={(options) => options.type}
               sx={{ width: 240, position: 'absolute', left: '43.5%', top: '40%' }}
               options={typeArr}
+              onError={() => setTypeError(true)}
               renderInput={(params) => <TextField {...params} label="Type" />}
             />
             <Button type='submit' sx={{ top: '20rem', left: '47.5%' }} variant="contained">Ajouter</Button>
