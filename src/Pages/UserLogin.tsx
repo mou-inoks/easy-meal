@@ -33,10 +33,10 @@ export default function UserLogin() {
      fontFamily: 'Gilroy,sans-serif',
      fontSize: '30px',
      color: '#66b2ff',
-     top: '70%',
+     top: '60%',
      height: '20px',
      position:'relative',
-     right:'50%',
+     right:'39%',
      width: '2500px'
     }}>Une application
     </p>
@@ -46,11 +46,11 @@ export default function UserLogin() {
      fontFamily: 'Gilroy,sans-serif',
      fontSize: '30px',
      color: '#66b2ff',
-     top: '70%',
+     top: '63.3%',
      height: '20px',
      position:'relative',
-     right:'40%',
-     width:'7rem'
+     right:'47.5%',
+     width:'200px'
     }}>
      <Typewriter
       words={['rapide', 'simple','pratique','cool :)']}

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
@@ -16,6 +16,8 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 const LoginForm = () => {
 
   const [showPassword, setShowPassword] = React.useState(false);
+  const [userNameError, setUserNameError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
 
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -78,8 +80,12 @@ const LoginForm = () => {
                   required
                   id="outlined-required"
                   label="Nom d'utilisateur"
-
+                  onError={() => setUserNameError(true)}
+                  error={userNameError}
                 />
+                  {errors.userName && touched.userName ? (
+                      <div style={{position: 'relative', left:'44%', top: '28vh', color:"#d32f2f"}} >{errors.userName}</div>
+                  ) : null}
               </div>
               <div>
               <FormControl sx={{ m: 1, width: '25ch', position: 'absolute', left: '71.5%', top: '40%', color: 'white' }} variant="outlined">
@@ -104,12 +110,8 @@ const LoginForm = () => {
                 />
               </FormControl>
               </div>
-
-              
             </Box>
-
             <Button onClick={() => {
-              console.log("hello")
               if (values.password == '1234' && values.userName == 'salim')
                 navigate('/aliments')
               else
@@ -121,11 +123,11 @@ const LoginForm = () => {
               color: 'black',
               fontFamily: 'Gilroy,sans-serif',
               position: 'relative',
-              top: '53rem',
+              top: '48rem',
               left: '44%',
-              width: '140px'
+              width: '160px'
             }}>
-              Made by Salim❤️
+              Made with ❤️ by Salim
             </p>
           </Form>
         }}
