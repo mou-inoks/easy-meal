@@ -4,6 +4,7 @@ import axios from 'axios'
 import { Formik, FormikHelpers, Form } from 'formik'
 import MealsAutocomplete from '../Components/MealAutocomplete'
 import Navbar from '../Components/Navbar'
+
 interface Values {
   name: string,
   proteine: InterfaceAliment | null,

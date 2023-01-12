@@ -101,22 +101,28 @@ const CreateAliment = () => {
                   id="outlined-required"
                   label="Nom"
                   error={nameError}
+                  onClick={() => setNameError(false)}
                   onError={() => setNameError(true)}
                 />
                   {errors.name && touched.name ? (
-                      <div  >{errors.name}</div>
+                      <div style={{position: 'relative', left:'44%', top: '28vh', color:"#d32f2f"}} >{errors.name}</div>
                   ) : null}
               </div>
             </Box>
+
             <Autocomplete
               onChange={(e, v) => values.typeId = v?.type!}
               getOptionLabel={(options) => options.type}
-              sx={{ width: 240, position: 'absolute', left: '43.5%', top: '40%' }}
+              onClick={() => setTypeError(false)}
+              sx={{ width: 240, position: 'absolute', left: '43.5%', top: '42%' }}
               options={typeArr}
               onError={() => setTypeError(true)}
-              renderInput={(params) => <TextField {...params} label="Type" />}
+              renderInput={(params) => <TextField error={typeError} {...params} label="Type" />}
             />
-            <Button type='submit' sx={{ top: '20rem', left: '47.5%' }} variant="contained">Ajouter</Button>
+              {errors.typeId && touched.typeId ? (
+                  <div style={{position: 'relative', left:'44%', top: '36vh', color:"#d32f2f"}}>{errors.typeId}</div>
+              ) : null}
+            <Button type='submit' sx={{ top: '25rem', left: '47.5%' }} variant="contained">Ajouter</Button>
           </Form>
         }}
 
