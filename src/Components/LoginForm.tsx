@@ -11,10 +11,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 
 
-interface InterfaceType {
-  id: number,
-  type: string
-}
+
 
 const LoginForm = () => {
 
@@ -36,12 +33,14 @@ const LoginForm = () => {
   }
 
   const CreateSchemaValidation = Yup.object().shape({
-    name: Yup.string()
+    userName: Yup.string()
       .max(100, 'Must be 100 characters or less you stupid')
       .min(3, 'Be serious please :|')
       .required('Mandatory'),
-    type: Yup.string().required('Mandatory'),
-    typeId: Yup.string().required('Mandatory')
+    password: Yup.string()
+        .required('Mandatory')
+        .max(100, 'Must be 100 characters or less you stupid')
+        .min(3, 'Be serious please ! ')
 
   })
 
@@ -79,6 +78,7 @@ const LoginForm = () => {
                   required
                   id="outlined-required"
                   label="Nom d'utilisateur"
+
                 />
               </div>
               <div>

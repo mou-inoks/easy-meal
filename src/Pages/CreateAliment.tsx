@@ -117,7 +117,7 @@ const CreateAliment = () => {
               sx={{ width: 240, position: 'absolute', left: '43.5%', top: '42%' }}
               options={typeArr}
               onError={() => setTypeError(true)}
-              renderInput={(params) => <TextField error={typeError} {...params} label="Type" />}
+              renderInput={(params) => <TextField error={typeError} onClick={() => setTypeError(false)} {...params} label="Type" />}
             />
               {errors.typeId && touched.typeId ? (
                   <div style={{position: 'relative', left:'44%', top: '36vh', color:"#d32f2f"}}>{errors.typeId}</div>

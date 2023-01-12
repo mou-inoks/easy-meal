@@ -7,6 +7,7 @@ import Navbar from '../Components/Navbar'
 
 
 function MainPage() {
+
     return (
         <div className='MainPage'>
             <Navbar/>
