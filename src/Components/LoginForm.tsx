@@ -8,6 +8,8 @@ import * as Yup from 'yup';
 import { useNavigate } from "react-router-dom";
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import {Simulate} from "react-dom/test-utils";
+import touchEnd = Simulate.touchEnd;
 
 
 
@@ -38,9 +40,9 @@ const LoginForm = () => {
     userName: Yup.string()
       .max(100, 'Must be 100 characters or less you stupid')
       .min(3, 'Be serious please :|')
-      .required('Mandatory'),
+      .required('Required'),
     password: Yup.string()
-        .required('Mandatory')
+        .required('Required')
         .max(100, 'Must be 100 characters or less you stupid')
         .min(3, 'Be serious please ! ')
 
@@ -59,6 +61,10 @@ const LoginForm = () => {
           values: Values,
           { setSubmitting }: FormikHelpers<Values>
         ) => {
+            if (values.userName != "salim" && values.password != "1234")
+                console.log("not existing")
+            else
+                navigate('/aliments')
         }}
       >
         {({ values, errors, touched }) => {
@@ -69,7 +75,6 @@ const LoginForm = () => {
               sx={{
                 '& .MuiTextField-root': { m: 1, width: '25ch' },
               }}
-              noValidate
               autoComplete="off"
             >
               <div>
@@ -84,40 +89,39 @@ const LoginForm = () => {
                   error={userNameError}
                 />
                   {errors.userName && touched.userName ? (
-                      <div style={{position: 'relative', left:'44%', top: '28vh', color:"#d32f2f"}} >{errors.userName}</div>
+                      <div style={{position: 'relative', left:'39%', top: '28vh', color:"#d32f2f"}} >{errors.userName}</div>
                   ) : null}
               </div>
               <div>
               <FormControl sx={{ m: 1, width: '25ch', position: 'absolute', left: '71.5%', top: '40%', color: 'white' }} variant="outlined">
                 <InputLabel htmlFor="outlined-adornment-password">Mot de passe</InputLabel>
                 <OutlinedInput
-                  onChange={(e) => values.password = e.target.value}
-                  id="outlined-adornment-password"
-                  type={showPassword ? 'text' : 'password'}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
-                      >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
+                    error={passwordError}
+                    onError={() => setPasswordError(true)}
+                    onChange={(e) => values.password = e.target.value}
+                    id="outlined-adornment-password"
+                    type={showPassword ? 'text' : 'password'}
+                    endAdornment={
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                            onMouseDown={handleMouseDownPassword}
+                            edge="end"
+                          >
+                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                          </IconButton>
+                        </InputAdornment>
                   }
                   label="Mot de passe "
                 />
               </FormControl>
+                  {errors.password && touched.password ? (
+                      <div style={{position: 'relative', left:'39%', top: '36vh', color:"#d32f2f"}} >{errors.password}</div>
+                  ) : null}
               </div>
             </Box>
-            <Button onClick={() => {
-              if (values.password == '1234' && values.userName == 'salim')
-                navigate('/aliments')
-              else
-                console.log("not existing ")
-
-            }} sx={{ top: '30rem', left: '45%' }} variant="contained">Connexion</Button>
+            <Button type='submit' sx={{ top: '30rem', left: '45%' }} variant="contained">Connexion</Button>
 
             <p style={{
               color: 'black',

@@ -47,13 +47,12 @@ export default function UserLogin() {
      fontSize: '30px',
      color: '#66b2ff',
      top: '63.3%',
-     height: '20px',
-     position:'relative',
-     right:'47.5%',
-     width:'200px'
+     right:'68.5%',
+     position:'absolute'
+
     }}>
      <Typewriter
-      words={['rapide', 'simple','pratique','cool :)']}
+      words={['rapide', 'simple','cool :)']}
       loop={5}
       cursor
       cursorStyle='|'

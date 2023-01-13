@@ -28,8 +28,8 @@ const CreateAliment = () => {
 
     const SignupSchema = Yup.object().shape({
         name: Yup.string()
-            .min(2, 'Too Short!')
-            .max(50, 'Too Long!')
+            .min(2, 'Bro... Focus')
+            .max(50, 'Must be 100 characters or less you stupid')
             .required('Required'),
         typeId: Yup.string()
             .min(2, 'Too Short!')
