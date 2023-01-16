@@ -22,24 +22,8 @@ interface InterfaceAliment {
 
 const CreateRepas = () => {
 
-    const [alimArr, setAlimArr] = useState<InterfaceAliment[]>([])
-    const [nameError, setNameError] = useState(false)
-    const [protError, setProtError] = useState(false)
-    const [legumeError, setLegumeError] = useState(false)
-    const [feculentError, setFeculentError] = useState(false)
-
-    const SignupSchema = Yup.object().shape({
-        name: Yup.string()
-            .min(2, 'Bro... Focus')
-            .max(50, 'Must be 100 characters or less you stupid')
-            .required('Required'),
-        proteine: Yup.string()
-            .required('Required'),
-        feculent: Yup.string()
-            .required('Required'),
-        legumes: Yup.string()
-            .required('Required'),
-    });
+  const [alimArr, setAlimArr] = useState<InterfaceAliment[]>([])
+  const [nameError, setNameError] = useState(false)
 
   const FetchGetAllAliments = () => {
     axios.get('https://localhost:7185/api/Aliments').then(res => {
@@ -65,7 +49,6 @@ const CreateRepas = () => {
           legume: null,
           feculent: null,
         }}
-        validationSchema={SignupSchema}
         onSubmit={(
           values: Values,
           { setSubmitting }: FormikHelpers<Values>
@@ -85,15 +68,7 @@ const CreateRepas = () => {
             });
         }}
       >
-        {({ handleChange, errors, touched }) => {
-            if(errors.name && touched.name)
-                setNameError(true)
-            if(errors.proteine && touched.proteine)
-                setProtError(true)
-            if(errors.feculent && touched.feculent)
-                setFeculentError(true)
-            if(errors.legume && touched.legume)
-                setLegumeError(true)
+        {({ handleChange }) => {
           return <Form>
             <Box
               component="form"
@@ -112,30 +87,18 @@ const CreateRepas = () => {
                 label="Nom"
                 error={nameError}
               />
-                {errors.name && touched.name ? (
-                    <div style={{position: 'relative', left:'44%', top: '28vh', color:"#d32f2f"}} >{errors.name}</div>
-                ) : null}
             </Box>
 
             <Grid sx={{ position: 'absolute', left: '43.5%', top: '40%' }}>
-              <MealsAutocomplete arr={alimArr} aliment='proteine' label='Protéine' error={protError} />
-                {errors.proteine && touched.proteine ? (
-                    <div style={{position: 'relative', left:'44%', top: '28vh', color:"#d32f2f"}} >{errors.proteine}</div>
-                ) : null}
+              <MealsAutocomplete arr={alimArr} aliment='proteine' label='Protéine'  />
             </Grid>
 
             <Grid sx={{ position: 'absolute', left: '43.5%', top: '50%' }}>
-              <MealsAutocomplete arr={alimArr} aliment='legume' label='Légume' error={legumeError} />
-                {errors.legume && touched.legume ? (
-                    <div style={{position: 'relative', left:'44%', top: '28vh', color:"#d32f2f"}} >{errors.legume}</div>
-                ) : null}
+              <MealsAutocomplete arr={alimArr} aliment='legume' label='Légume' />
             </Grid>
 
             <Grid sx={{ position: 'absolute', left: '43.5%', top: '60%' }}>
-              <MealsAutocomplete arr={alimArr} aliment='feculent' label='Féculent' error={feculentError} />
-                {errors.feculent && touched.feculent ? (
-                    <div style={{position: 'relative', left:'44%', top: '28vh', color:"#d32f2f"}} >{errors.feculent}</div>
-                ) : null}
+              <MealsAutocomplete arr={alimArr} aliment='feculent' label='Féculent'  />
             </Grid>
 
             <Button type='submit' sx={{ top: '35rem', left: '47.5%' }} variant="contained">Ajouter</Button>

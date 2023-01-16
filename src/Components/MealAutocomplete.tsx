@@ -14,7 +14,6 @@ interface FormikMealAutocompleteProps {
  arr: Aliments[],
  aliment: string,
  label: string,
- error: boolean
 }
 
 const MealsAutocomplete = (props: FormikMealAutocompleteProps) => {
@@ -33,7 +32,7 @@ const MealsAutocomplete = (props: FormikMealAutocompleteProps) => {
    getOptionLabel={(options) => options.name}
    sx={{ width: 240}}
    options={nArr}
-   renderInput={(params) => <TextField error={props.error} {...params} label={props.label} />}
+   renderInput={(params) => <TextField {...params} label={props.label} />}
   />
  )
 }
