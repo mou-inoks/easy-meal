@@ -33,10 +33,10 @@ export default function UserLogin() {
      fontFamily: 'Gilroy,sans-serif',
      fontSize: '30px',
      color: '#66b2ff',
-     top: '60%',
+     top: '62%',
      height: '20px',
      position:'relative',
-     right:'39%',
+     right:'50%',
      width: '2500px'
     }}>Une application
     </p>
@@ -46,8 +46,8 @@ export default function UserLogin() {
      fontFamily: 'Gilroy,sans-serif',
      fontSize: '30px',
      color: '#66b2ff',
-     top: '63.3%',
-     right:'68.5%',
+     top: '66%',
+     right:'65%',
      position:'absolute'
 
     }}>
