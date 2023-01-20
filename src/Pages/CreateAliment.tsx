@@ -70,6 +70,7 @@ const CreateAliment = () => {
             typeId: values.typeId
           })
             .then(function (response) {
+              alert("Aliment as been added")
               setSubmitting(true)
               console.log(response);
             })

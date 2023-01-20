@@ -62,6 +62,7 @@ const CreateRepas = () => {
             .then(function (response) {
               setSubmitting(true)
               console.log(response);
+              alert("Repas as been added")
             })
             .catch(function (error) {
               console.log(error);
