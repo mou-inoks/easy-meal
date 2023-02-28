@@ -14,4 +14,8 @@ TO START THE PROJECT
 4. yarn start - npm start -> to start locally the ui side of the project
 
 
+
+
 If you didn't install the api side, you wont have any data ! 
+
+You can access the API here : https://github.com/mou-inoks/easy-meal-api
